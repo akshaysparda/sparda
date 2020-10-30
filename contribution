@@ -1,0 +1,25 @@
+
+   public boolean isDisplayed_addMoneyscreen() {
+       return ActionHelper.isPresent(addMoneyScreen);
+   }
+
+   public boolean isDisplayed_flighttravel() {
+       ActionHelper.waitUntilElementsVisible(flightTravel);
+       return ActionHelper.isPresent(flightTravel);
+   }
+
+
+   public void click_category(String categoryInput) {
+       By by = By.xpath(category.replace("xyz", categoryInput));
+       ActionHelper.click(By.xpath("//android.view.View[@resource-id='root']//android.widget.ListView"));
+       if (!ActionHelper.isPresent(by)) {
+           ActionHelper.scrollTillElementHorizontally(by, By.xpath("//android.widget.Button[@text='New Offers']/parent::android.view.View"));
+       }
+       ActionHelper.click(by);
+   }
+
+
+   public boolean isDisplayed_RecentlyAddedOffers(String xpath) {
+       By by = By.xpath(this.categoryTitle.replace("xyz", xpath));
+       return ActionHelper.isPresentWithWait(by);
+
